@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/auth.css">
+</head>
+<body>
+  <div class="book-container">
+    <!-- Login Panel -->
+    <div class="page" id="loginPage">
+      <div class="content">
+        <h1>Login</h1>
+        <form id="loginForm">
+          <label for="login-username">Username:</label>
+          <input type="text" id="login-username" placeholder="Enter your username" required>
+          <label for="login-password">Password:</label>
+          <input type="password" id="login-password" placeholder="Enter your password" required>
+          <button type="submit">Login</button>
+          <p id="login-message"></p>
+        </form>
+        <p>Don't have an account? <span class="toggle-page">Register</span></p>
+      </div>
+    </div>
+    <!-- Register Panel -->
+    <div class="page back" id="registerPage">
+      <div class="content">
+        <h1>Register</h1>
+        <form id="registerForm">
+          <label for="register-username">Username:</label>
+          <input type="text" id="register-username" placeholder="Choose a username" required>
+          <label for="register-email">Email:</label>
+          <input type="text" id="register-email" placeholder="Enter Email" required>
+          <label for="register-password">Password:</label>
+          <input type="password" id="register-password" placeholder="Choose a password" required>
+          <label for="register-confirm-password">Confirm Password:</label>
+          <input type="password" id="register-confirm-password" placeholder="Confirm your password" required>
+          <button type="submit">Register</button>
+          <p id="register-message"></p>
+        </form>
+        <p>Already have an account? <span class="toggle-page">Login</span></p>
+      </div>
+    </div>
+  </div>
+  <script src="../Js/authFront.js"></script>
+</body>
+</html>  

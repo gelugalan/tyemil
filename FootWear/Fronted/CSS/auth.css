@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  perspective: 1000px;
+}
+
+
+.book-container {
+  width: 400px;
+  height: 500px;
+  max-width: 98vw;
+  max-height: 98vh;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+  perspective: 1200px;
+}
+
+.book-container.flipped {
+  transform: rotateY(180deg);
+}
+
+
+.page, .page.back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  backface-visibility: hidden;
+  transition: opacity 0.5s;
+  opacity: 1;
+  z-index: 2;
+}
+
+.page.back {
+  background: #f4f4f4;
+  transform: rotateY(180deg);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.book-container.flipped .page {
+  opacity: 0;
+  pointer-events: none;
+}
+.book-container.flipped .page.back {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+
+.content {
+  width: 100%;
+  max-width: 350px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background: #2575fc;
+}
+
+p {
+  margin-top: 10px;
+  color: #555;
+}
+
+span.toggle-page {
+  color: #6a11cb;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+span.toggle-page:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 600px) {
+  .book-container {
+    width: 98vw;
+    height: 100vh;
+    min-width: 0;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+  .page, .page.back {
+    border-radius: 0;
+    box-shadow: none;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 0;
+  }
+  .content, form {
+    max-width: 98vw;
+    padding: 10px;
+  }
+}
