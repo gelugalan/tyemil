@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel – FoSA</title>
+  <link rel="stylesheet" href="../CSS/admin.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap">
+</head>
+<body>
+  <div id="sidebarOverlay"></div>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="sidebar-title">FoSA Admin</div>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Deschide meniul">&#9776;</button>
+      <nav>
+        <ul>
+          <li class="active" data-section="dashboard"><span>📊</span> Dashboard</li>
+          <li data-section="products"><span>👟</span> Produse</li>
+          <li data-section="add-product"><span>➕</span> Adaugă produs</li>
+          <li data-section="users"><span>👤</span> Utilizatori</li>
+          <li data-section="stats"><span>📈</span> Statistici</li>
+          <li data-section="settings"><span>⚙️</span> Setări</li>
+          <li data-section="export"><span>⬇️</span> Export date</li>
+          <li data-section="import"><span>🌐</span> Import produse externe</li>
+          <li data-section="logout"><span>🚪</span> Logout</li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="admin-content">
+      <section id="dashboard-section" class="admin-section active">
+        <h2>Bine ai venit în panoul de administrare!</h2>
+        <div id="dashboard-widgets"></div>
+      </section>
+      <section id="products-section" class="admin-section">
+        <h2>Produse</h2>
+        <div class="filters">
+          <input type="text" id="filterSearch" placeholder="Caută după nume...">
+          <select id="filterBrand"><option value="">Toate brandurile</option></select>
+          <select id="filterStil"><option value="">Toate stilurile</option></select>
+          <select id="filterSezon"><option value="">Toate sezoanele</option></select>
+          <select id="filterGen"><option value="">Toate genurile</option></select>
+        </div>
+        <div class="table-responsive">
+          <table class="products-table">
+            <thead>
+              <tr>
+                <th>Imagine</th>
+                <th>Nume</th>
+                <th>Brand</th>
+                <th>Stil</th>
+                <th>Sezon</th>
+                <th>Culoare</th>
+                <th>Gen</th>
+                <th>Acțiuni</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+      <section id="add-product-section" class="admin-section">
+        <h2>Adaugă produs</h2>
+        <form id="addProductForm" enctype="multipart/form-data">
+          <div class="form-row">
+            <input type="text" id="nume" name="nume" placeholder="Nume pantof" required>
+            <input type="text" id="brand" name="brand" placeholder="Marcă" required>
+          </div>
+          <div class="form-row">
+            <input type="text" id="stil" name="stil" placeholder="Stil" required>
+            <input type="text" id="sezon" name="sezon" placeholder="Sezon" required>
+          </div>
+          <div class="form-row">
+            <input type="text" id="culoare" name="culoare" placeholder="Culoare" required>
+            <input type="text" id="gen" name="gen" placeholder="Gen" required>
+          </div>
+          <div class="form-row">
+            <input type="file" id="imagine" name="imagine" accept="image/*" required>
+          </div>
+          <button type="submit">Adaugă produs</button>
+          <p id="add-product-message"></p>
+        </form>
+      </section>
+      <section id="users-section" class="admin-section">
+        <h2>Utilizatori</h2>
+        <div id="usersTable"></div>
+      </section>
+
+    <section id="stats-section" class="admin-section">
+      <h2>Statistici utilizatori</h2>
+      <div class="stats-filters">
+        <label for="user-stat-type">Tip statistică:</label>
+        <select id="user-stat-type">
+          <option value="role">Rol</option>
+          <option value="created_at">Conturi pe zile</option>
+        </select>
+        <label for="user-chart-type">Tip grafic:</label>
+        <select id="user-chart-type">
+          <option value="bar">Bară</option>
+          <option value="pie">Plăcintă</option>
+        </select>
+      </div>
+      <canvas id="userChart" width="400" height="220"></canvas>
+
+      <h2 style="margin-top:40px;">Statistici produse</h2>
+      <div class="stats-filters">
+        <label for="prod-stat-type">Tip statistică:</label>
+        <select id="prod-stat-type">
+          <option value="brand">Brand</option>
+          <option value="stil">Stil</option>
+          <option value="sezon">Sezon</option>
+          <option value="gen">Gen</option>
+        </select>
+        <label for="prod-chart-type">Tip grafic:</label>
+        <select id="prod-chart-type">
+          <option value="bar">Bară</option>
+          <option value="pie">Plăcintă</option>
+        </select>
+      </div>
+      <canvas id="prodChart" width="400" height="220"></canvas>
+    </section>
+
+
+
+      <section id="settings-section" class="admin-section">
+        <h2>Setări</h2>
+        <div id="settingsContent"></div>
+        <h2>Setări branding</h2>
+        <div class="settings-group">
+          <label for="logoInput">Logo magazin:</label>
+          <input type="file" id="logoInput" accept="image/*">
+          <div id="logoPreview" style="margin:10px 0;"></div>
+
+          <label for="storeName">Nume magazin:</label>
+          <input type="text" id="storeName" value="FoSA">
+
+          <label for="primaryColor">Culoare principală:</label>
+          <input type="color" id="primaryColor" value="#6a11cb">
+        </div>
+
+        <h2>Setări email</h2>
+        <div class="settings-group">
+          <label for="notifEmail">Email notificări:</label>
+          <input type="email" id="notifEmail" value="admin@fosa.ro">
+
+          <label for="recurrence">Frecvență emailuri recurente:</label>
+          <select id="recurrence">
+            <option value="daily">Zilnic</option>
+            <option value="weekly">Săptămânal</option>
+            <option value="monthly">Lunar</option>
+          </select>
+        </div>
+
+        <h2>Personalizare emailuri</h2>
+        <div class="settings-group">
+          <label for="template-register">Email creare cont:</label>
+          <textarea id="template-register" rows="3">Bun venit, {username}! Contul tău a fost creat.</textarea>
+
+          <label for="template-recurrent">Email recurent:</label>
+          <textarea id="template-recurrent" rows="3">Salut, {username}! Nu uita să verifici noile produse.</textarea>
+        </div>
+
+        <button id="saveSettingsBtn" class="btn-primary">Salvează setările</button>
+        <div id="settingsMessage" style="margin-top:10px;"></div>
+      </section>
+      <section id="export-section" class="admin-section">
+        <h2>Export date</h2>
+        <button id="exportHTML">Export HTML</button>
+        <button id="exportCSV">Export CSV</button>
+        <button id="exportXML">Export XML</button>
+        <div id="exportMessage"></div>
+      </section>
+      <section id="import-section" class="admin-section">
+        <h2>Import produse externe</h2>
+        <div class="filters" style="margin-bottom:16px;">
+          <input type="text" id="importFilterBrand" placeholder="Filtru brand...">
+          <input type="number" id="importFilterPrice" placeholder="Preț maxim...">
+          <button id="fetchExternalBtn">Încarcă papuci externi</button>
+        </div>
+        <div id="externalProducts" style="margin-top:20px;"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-bg" id="modalPreview">
+    <div class="modal shoe-preview-modal">
+      <span class="close" id="closePreview">&times;</span>
+      <h3>Previzualizare produs</h3>
+      <div id="previewContent"></div>
+    </div>
+  </div>
+  <script src="../Js/adminFront.js"></script>
+</body>
+</html>

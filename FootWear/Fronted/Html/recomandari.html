@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Recomandări - FoW</title>
+    <link rel="stylesheet" href="../CSS/recomandari.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h2>FoSA</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#" class="active">Recomandări</a></li>
+                <li><a href="#">Despre</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="form-section">
+        <h1>Completează preferințele tale</h1>
+        <form id="recommendationForm">
+            <label for="sezon">Sezon:</label>
+            <select id="sezon" name="sezon" required>
+                <option value="">Alege sezonul</option>
+                <option value="vara">Vara</option>
+                <option value="iarna">Iarna</option>
+                <option value="primavara">Primăvara</option>
+                <option value="toamna">Toamna</option>
+            </select>
+
+            <label for="ocazie">Ocazie:</label>
+            <select id="ocazie" name="ocazie" required>
+                <option value="">Alege ocazia</option>
+                <option value="sport">Sport</option>
+                <option value="interviu">Interviu</option>
+                <option value="Eveniment elegant">Eveniment elegant</option>
+                <option value="casual">Casual</option>
+            </select>
+
+            <label for="culoare">Culoare preferată:</label>
+            <input type="text" id="culoare" name="culoare" placeholder="ex: negru, alb" required>
+
+            <label for="marca">Marcă preferată:</label>
+            <input type="text" id="marca" name="marca" placeholder="ex: Nike, Adidas">
+
+            <label for="stil">Stil vestimentar:</label>
+            <select id="stil" name="stil" required>
+                <option value="">Alege stilul</option>
+                <option value="sport">Sport</option>
+                <option value="business">Business</option>
+                <option value="Eveniment elegant">Eveniment elegant</option>
+                <option value="casual">Casual</option>
+            </select>
+            <label for="gen">Gen:</label>
+            <select id="gen" name="gen">
+                  <option value="">Fără preferință</option>
+                  <option value="barbat">Bărbat</option>
+                  <option value="femeie">Femeie</option>
+                  <option value="unisex">Unisex</option>
+                </select>
+            <button type="submit" class="button">Primește recomandări</button>
+        </form>
+    </section>
+
+    <script src="../JS/recomandari.js"></script>
+</body>
+</html>
